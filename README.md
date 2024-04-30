@@ -4,9 +4,9 @@ This Github Action parses all the possible issue keys from the commit message.
 
 ## Requirements
 
-Issue keys must use capital letters and must have a dash ('-') between the letters and digits. There should be no spaces between the characters of an issue key.
+Issue keys must use capital letters and must have a dash ('-') between the letters and digits. There should be no spaces between the characters of an issue key. Each issue key has to be between square brackets.
 
-Example: `EXAMPLE-123 TH-1S 1s a commit-1` the only issue key is EXAMPLE-123
+Example: `[EXAMPLE-123] EXAMPLE-248 TH-1S 1s a commit-1` the only issue key is EXAMPLE-123
 
 ## Action Specifications
 
@@ -32,7 +32,7 @@ uses: HighwayThree/jira-extract-issue-keys@master
 with:
     is-pull-request: ${{ github.event_name == 'pull_request' }}
     parse-all-commits: ${{ github.event_name == 'push' }}
-    commit-message: 'EXAMPLE-1 message'
+    commit-message: '[EXAMPLE-1] message'
 ```
 
 - `is-pull-request` - is true if the GitHub event is a pull request. Default value is false.
@@ -41,10 +41,10 @@ with:
 
 ### Output value
 
-- `jira-keys` - All of the keys found in the commit. 
+- `jira-keys` - All of the keys found in the commit.
     - If is-pull-request was true, then it has all of the keys from all of the commits that were found in the pull request.
 
 ## Usage
 
-An example of a pipeline using this action can be found at: 
-> https://github.com/HighwayThree/jira-github-action-integration-demo/blob/master/.github/workflows/ci.yml
+An example of a pipeline using this action can be found at:
+> https://github.com/enplug-tjokiel/jira-github-action-integration-demo/blob/master/.github/workflows/ci.yml
